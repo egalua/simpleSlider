@@ -1,0 +1,91 @@
+.slider{
+    width: 500px;
+    height: 250px;
+    margin: auto;
+    border: 1px solid black;
+    position: relative;
+}
+.slider_position{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.slider__left-button, .slider__right-button{
+    position: absolute;
+    width: 25px;
+    height: 50px;
+    background: #cfc;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 1px solid black;
+    text-align:center;
+    cursor: pointer;
+}
+.slider__left-button{
+    right: 100%;
+}
+.slider__right-button{
+    left: 100%;
+}
+.slider__left-button > span, .slider__right-button > span{
+    vertical-align: middle;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.slider__left-button:before, .slider__right-button:before{
+    content:'';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.slider__wrapper{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: 0;
+    position: relative;
+}
+.slider__tape, .slider__slides-block, .slider__slide{
+    box-sizing: border-box;
+}
+.slider__tape{
+    display: inline-block;
+    height: 100%;
+    margin: auto;
+    white-space: nowrap;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3750px; /* место для размещения блока слайдов и клона этого блока*/
+    box-sizing: border-box;
+}
+.slider__slides-block{
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+}
+.slider__slide{
+    height: 100%;
+    font-size: 16px;
+    display: inline-block;
+    width: 250px;
+    box-sizing: border-box;
+    border: 1px solid grey;
+    background: #ffc;
+}
+
+.clone{
+
+}
+.active{
+
+}
+.transition-left{
+    transition-property: left;
+    transition-duration: 1000ms;
+    transition-timing-function: ease;
+}
