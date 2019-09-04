@@ -4,6 +4,7 @@
     margin: auto;
     border: 1px solid black;
     position: relative;
+    text-align: center;
 }
 .slider_position{
     position: absolute;
@@ -12,6 +13,25 @@
     left: 0;
     right: 0;
     margin: auto;
+}
+.slider__nav{
+    display: inline-block;
+    padding: 5px;
+    margin-top: 10px;
+    white-space: nowrap;
+}
+.slider__nav-item{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid grey;
+    background-color: #cfc;
+    margin: 0 2px;
+    cursor: pointer;
+}
+.slider__nav-item_active{
+    background-color: #fd4;
 }
 .slider__left-button, .slider__right-button{
     position: absolute;
@@ -60,6 +80,7 @@
     position: absolute;
     left: 0;
     top: 0;
+    /* width = 3 * slider__slides-block.width*/
     width: 3750px; /* место для размещения блока слайдов и клона этого блока*/
     box-sizing: border-box;
 }
@@ -81,7 +102,7 @@
 .clone{
 
 }
-.active{
+.slider__slide_active{
 
 }
 .transition-left{
