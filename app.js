@@ -84,7 +84,6 @@ Slider.prototype.initNav = function(){
     });
     this.navItemsArray[activeItemIndex].classList.add('slider__nav-item_active');
 
-    this.reflow(this.nav);
 }
 /**
  * Установить класс 'active' на пункте меню, 
@@ -101,7 +100,6 @@ Slider.prototype.setActiveItemInNavPanel = function(){
     }
 
     this.navItemsArray[idx].classList.add('slider__nav-item_active');
-    this.reflow(this.nav);
 }
 
 /**
@@ -169,7 +167,6 @@ Slider.prototype.moveTapeToSlideIndex = function(nextSlideIndex, carouselMode){
     this.slidesArray.forEach( function(slide){ slide.classList.remove('slider__slide_active'); } );
     this.slidesArray[nextSlideIndex].classList.add('slider__slide_active');
 
-    this.reflow(this.tape); // принудительный пересчет стилей
 }
 /**
  * Создает генератор индексов, где каждый новый индекс 
@@ -281,7 +278,6 @@ Slider.prototype.moveTapeToASlideInSimpleMode = function(slideIdx){
     // смещение ленты относительно левой границы "фрейма" - блока this.wrapper 
     this.tape.style.left = -(offset + slidesBlockWidth) + 'px';
 
-    this.reflow(this.tape); 
 };
 /**
  * Выравнивает основной блок слайдов по правой или левой границе "фрейма" this.wrapper
@@ -301,7 +297,6 @@ Slider.prototype.alignToFrameBorder = function(sideFlag){
     } else { // правая сторона "фрейма" совмещается с правой стороной блока слайдов
         this.tape.style.left = -(2*slidesBlockWidth - wrapperWidth) + 'px';
     }
-    this.reflow(this.tape);
 };
 /**
  * Получить индекс слайда с классом 'slider__slide_active'
@@ -340,13 +335,6 @@ Slider.prototype.changeClonedBlockPosition = function(){
         this.slidesBlockClone.style.left = '0px';
     }
 }
-// принудительный пересчет стилей
-Slider.prototype.reflow = function(element){
-    // первый способ (не всегда работает)
-    var currentStyle = window.getComputedStyle(element);
-    // второй способ (чтобы уже наверняка)
-    var currentOffsetHeight = element.offsetHeight; 
-};
 
 /**
  * Выравнивает ленту по совпадению границ "фрейма" и блока слайдов
@@ -565,7 +553,6 @@ Slider.prototype.setTransitionendHandler = function(element){
 Slider.prototype.onAnimation = function(){
     this.transitionEnd = false; // старт css transition
     this.tape.classList.add('transition-left');
-    this.reflow(this.tape); 
 }
 /**
  * Выключает анимацию
@@ -573,5 +560,4 @@ Slider.prototype.onAnimation = function(){
 Slider.prototype.offAnimation = function(){
     this.transitionEnd = true;
     this.tape.classList.remove('transition-left');
-    this.reflow(this.tape);
 }
