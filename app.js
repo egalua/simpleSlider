@@ -440,7 +440,7 @@ Slider.prototype.setClicksHandlers = function(){
             // индекс следующего слайда
             var nextSlideIndex = self.getCurrentActiveSlideIndex();
             
-            if(isRightButton){
+            if(!isRightButton){
                 nextSlideIndex = (nextSlideIndex < 1) ? nextSlideIndex - 1 + self.slidesArray.length: 
                                                         nextSlideIndex - 1; 
             } else {
