@@ -12,11 +12,54 @@
         <div class="slider__wrapper">
             <div class="slider__tape">
                 <div class="slider__slides-block">
-                    <div class="slider__slide">1</div>
-                    <div class="slider__slide">2</div>
-                    <div class="slider__slide">3</div>
-                    <div class="slider__slide">4</div>
-                    <div class="slider__slide">5</div>
+                    <div class="slider__slide">
+                        <div class="slider__slide-content">
+                            <span class="slider__slide-content-text_hidden">
+                                «Будущее начинается тогда, когда заканчивается прошлое. Если Ваше прошлое не закончилось – будущее никогда не начнется» – Джордж Бернард Шоу
+                            </span>
+                            <span class="slider__slide-content-text_visible">кликабельно</span>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                        <div class="slider__slide-content">
+                            <span class="slider__slide-content-text_hidden">
+                                «Если кому-то нравится ошибаться, то кто я такой чтобы лишать его этого удовольствия» – Оскар Уайльд
+                            </span>
+                            <span class="slider__slide-content-text_visible">кликабельно</span>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                        <div class="slider__slide-content">
+                            <span class="slider__slide-content-text_hidden">
+                                «Тот, кто верит в свободу – раб своей веры» – А.Эйнштейн
+                            </span>
+                            <span class="slider__slide-content-text_visible">кликабельно</span>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                        <div class="slider__slide-content">
+                            <span class="slider__slide-content-text_hidden">
+                                «Идеальный дьявол – тот, которого нет, а его функция выполняется» – Генрих Альтшуллер.
+                            </span>
+                            <span class="slider__slide-content-text_visible">кликабельно</span>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                        <div class="slider__slide-content">
+                            <span class="slider__slide-content-text_hidden">
+                                «Если вы не тратите энергию на созидание – она уходит на разрушение» – Пьер Кюри
+                            </span>
+                            <span class="slider__slide-content-text_visible">кликабельно</span>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                            <div class="slider__slide-content">
+                                <span class="slider__slide-content-text_hidden">
+                                    Все персонажи вымышлены и любые совпадения случайны
+                                </span>
+                                <span class="slider__slide-content-text_visible">кликабельно</span>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -27,6 +70,9 @@
     
     <!-- <script src="polyfill.js"></script> -->
     <script src="app.js"></script>
-    <script> var sld = new Slider("slider"); </script>
+    <script> 
+        var sld = new Slider("slider"); 
+        initContent("slider");
+    </script>
 </body>
 </html>

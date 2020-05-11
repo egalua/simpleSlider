@@ -561,3 +561,111 @@ Slider.prototype.offAnimation = function(){
     this.transitionEnd = true;
     this.tape.classList.remove('transition-left');
 }
+
+
+function initContent(containerClassName){
+    /**
+     * Восходящий поиск по DOM дереву элемента с классом targetClass
+     * @param {HTMLElement} childEl "стартовый" элемент
+     * @param {String} targetClass css класс целефого элемента
+     * @returns {HTMLElement} целевой элемент или null, если элемента нет
+     */
+    function getTarget(childEl, targetClass, endBox){
+        var isTarget = false;
+        var target = childEl;
+        // 
+        while(target != endBox){
+            if(target.className.split(' ').indexOf(targetClass) != -1){
+                isTarget = true;
+                break;
+            }
+            target = target.parentElement;
+        }
+
+        if(isTarget){
+            return target;
+        }
+        return null;    
+    };
+    /**
+     * Возвращает индекс элемента в HTMLCollection своего "родителя"
+     * @param {HTMLElement} childe элемент HTMLCollection родительского элемента parent
+     * @param {HTMLElement} parent родительский элемент
+     * @returns {Number} индекс элемента в HTMLCollection его "родителя" или -1 если элемента нет
+     */
+    function getIndexOfChilde(childe, parent){
+        return [].indexOf.call(parent.children, childe);
+    };
+    /**
+     * Анимированная печать текста
+     * @param {String} text исходный текст
+     * @param {HTMLElement} container целевой блок с текстов
+     * @param {Number} timeout хадержка перед печатью символа
+     * @param {Number} index индекс символа в строке
+     */
+    function antimationPrint(text, container, timeout, index){
+        if(index===undefined){
+            index = 0;
+        }
+        
+        if(index < text.length){
+            container.innerHTML = container.innerHTML + text[index];
+            index++;
+            setTimeout(antimationPrint,timeout, text, container, timeout, index);
+        }
+    }
+    
+    this.clickHandler = function(event){
+        var timeout = 50;
+        var target = event.target;
+                
+        // контейнер с содержимым слайда
+        var slideBox = getTarget(target, 'slider__slide-content', document.body);
+        // нужно поймать еще и альтернативную версию (клон или реальный блок слайдов)
+            
+        if(slideBox !== null){
+            // слайд
+            var slide = getTarget(slideBox, 'slider__slide', document.body);
+            // блок слайдов
+            var slideBlock = getTarget(slide, 'slider__slides-block', document.body);
+            // индекс слайда в блоке слайдов
+            var slideIndex = getIndexOfChilde(slide, slideBlock);
+            // лента
+            var tape = getTarget(slideBlock, 'slider__tape', document.body);
+            
+            // HTMLCollection блоков слайдов (оригинальный и клонированный блок)
+            var slideBlocks = tape.querySelectorAll('.slider__slides-block');
+
+            // для innerHTML нужен split от лишних пробулов
+            var hiddenText = slideBox.querySelector('.slider__slide-content-text_hidden').innerHTML.trim();
+
+            var visibleTextBlock = slide.querySelector('.slider__slide-content-text_visible');
+            visibleTextBlock.innerHTML = '';
+
+            // определяет блок "альтернативный" блок слайдов для синхронизации изменений
+            if(slideBlocks[0] == slideBlock){
+                
+                var slideCopy = slideBlocks[1].querySelectorAll('.slider__slide')[slideIndex];
+                var visibleTextBlockCpy = slideCopy.querySelector('.slider__slide-content-text_visible');
+                visibleTextBlockCpy.innerHTML = '';
+                
+                antimationPrint(hiddenText, visibleTextBlock, timeout);    
+                antimationPrint(hiddenText, visibleTextBlockCpy, timeout);
+
+            } else {
+                var slideCopy = slideBlocks[0].querySelectorAll('.slider__slide')[slideIndex];
+                var visibleTextBlockCpy = slideCopy.querySelector('.slider__slide-content-text_visible');
+                visibleTextBlockCpy.innerHTML = '';
+
+                antimationPrint(hiddenText, visibleTextBlock, timeout);    
+                antimationPrint(hiddenText, visibleTextBlockCpy, timeout);
+
+            }
+
+        }
+    }
+
+    var box = document.querySelector('.' + containerClassName);
+    box.addEventListener('click', clickHandler);
+}
+
