@@ -11,4 +11,4 @@
 
 Параметры анимации устанавливаются в css для класса .transition-left 
 
-Ссылка на пример работы слайдера: https://egalua.github.io/simpleSlider/
+Ссылка на пример работы слайдера: https://egalua.github.io/simpleSlider/ 
